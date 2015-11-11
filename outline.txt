@@ -1,0 +1,18 @@
+# Outline of D3 Tutorial on EMR Visualization
+
+1. Importing D3 Library (X)
+2. Load patient JSON file (X)
+3. Set up canvas
+4. Draw a circle for each patient event
+5. Position circles horizontally by timestamp
+	* Create a time scale
+6. Color nodes by event type
+	* Change opacity
+7. Position circles vertically by event type
+	* Create a type scale
+  * Order type scale by first occurrence
+8. Create horizontal axis
+9. Add zooming and panning
+10. Add mouse-over events to circles
+	* Grow circles upon mouse-over
+	* Show labels upon mouse-over
