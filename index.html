@@ -38,10 +38,13 @@ function start() {
     var types = {};
     var groups = {};
     events.forEach(function(e) {
-      types[e["id"]] = true;
+      types[e["id"]] = Math.min(+e["time"], e["id"] in types ? types[e["id"]] : Number.POSITIVE_INFINITY);
       groups[e["group"]] = true;
     });
     var typeList = Object.keys(types);
+    typeList.sort(function(ta, tb) {
+      return d3.ascending(types[ta], types[tb]);
+    });
     var yPos = {};
     typeList.forEach(function(tid, ix) {
       yPos[tid] = h - ix * radius;
