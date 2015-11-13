@@ -15,4 +15,4 @@
 9. Add zooming and panning (X)
 10. Add mouse-over events to circles (X)
 	* Grow circles upon mouse-over (X)
-	* Show labels upon mouse-over
+	* Show labels upon mouse-over (X)

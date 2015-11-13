@@ -92,6 +92,9 @@ function start() {
       });
       visScale.range([ move[0], move[0] + w * s ]);
       visAxis.call(xAxis);
+      label.attr({
+        "font-size": 16 / s
+      });
     }
 
     var base = svg.append("g").append("g");
@@ -116,11 +119,20 @@ function start() {
       cur.transition().duration(100).attr({
         "r": 2 * radius
       });
+      label.attr({
+        "display": null,
+        "x": cur.attr("cx"),
+        "y": cur.attr("cy")
+      }).text(e["name"]);
     }).on("mouseout", function(e) {
       var cur = d3.select(this);
       cur.transition().duration(100).attr({
         "r": radius
       });
+    });
+
+    var label = base.append("text").classed("label", true).attr({
+      "display": "none"
     });
   });
 }
