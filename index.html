@@ -36,11 +36,19 @@ function start() {
 
     var events = data["events"];
 
+    var times = events.map(function(e) {
+      return +e["time"] * 1000;
+    });
+
+    var xScale = d3.time.scale().domain([ d3.min(times), d3.max(times) ]).range([ 0, w ]).nice();
+
     var sel = svg.selectAll("circle.event").data(events);
     sel.exit().remove();
     sel.enter().append("circle").classed("event", true);
     sel.attr({
-      "cx": w * 0.5,
+      "cx": function(e) {
+        return xScale(+e["time"] * 1000);
+      },
       "cy": h * 0.5,
       "r": radius
     });
