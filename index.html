@@ -18,6 +18,7 @@
 function start() {
   var w = 800;
   var h = 600;
+  var radius = 20;
 
   var content = d3.select("#divContent");
   var svg = content.append("svg").attr({
@@ -32,7 +33,17 @@ function start() {
       console.warn(err);
       return;
     }
-    console.log(data);
+
+    var events = data["events"];
+
+    var sel = svg.selectAll("circle.event").data(events);
+    sel.exit().remove();
+    sel.enter().append("circle").classed("event", true);
+    sel.attr({
+      "cx": w * 0.5,
+      "cy": h * 0.5,
+      "r": radius
+    });
   });
 }
 
