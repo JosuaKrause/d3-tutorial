@@ -13,6 +13,6 @@
   * Order type scale by first occurrence (X)
 8. Create horizontal axis (X)
 9. Add zooming and panning (X)
-10. Add mouse-over events to circles
-	* Grow circles upon mouse-over
+10. Add mouse-over events to circles (X)
+	* Grow circles upon mouse-over (X)
 	* Show labels upon mouse-over

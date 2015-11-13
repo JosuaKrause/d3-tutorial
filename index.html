@@ -111,6 +111,16 @@ function start() {
       "fill": function(e) {
         return groupScale(e["group"]);
       }
+    }).on("mouseover", function(e) {
+      var cur = d3.select(this);
+      cur.transition().duration(100).attr({
+        "r": 2 * radius
+      });
+    }).on("mouseout", function(e) {
+      var cur = d3.select(this);
+      cur.transition().duration(100).attr({
+        "r": radius
+      });
     });
   });
 }
