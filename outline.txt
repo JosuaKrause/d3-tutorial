@@ -11,7 +11,7 @@
 7. Position circles vertically by event type (X)
 	* Create a type scale (X)
   * Order type scale by first occurrence (X)
-8. Create horizontal axis
+8. Create horizontal axis (X)
 9. Add zooming and panning
 10. Add mouse-over events to circles
 	* Grow circles upon mouse-over

@@ -8,6 +8,22 @@
     * {
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
+
+    .axis {
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis line {
+      stroke: lightgray;
+    }
+
+    .x.axis .minor {
+      stroke-opacity: .5;
+    }
+
+    .x.axis path {
+      display: none;
+    }
   </style>
 </head>
 <body onload="start()">
@@ -19,11 +35,12 @@ function start() {
   var w = 800;
   var h = 600;
   var radius = 2;
+  var textHeight = 20;
 
   var content = d3.select("#divContent");
   var svg = content.append("svg").attr({
     "width": w,
-    "height": h
+    "height": h + textHeight
   }).style({
     "border": "solid black 1px"
   });
@@ -55,8 +72,16 @@ function start() {
     });
 
     var xScale = d3.time.scale().domain([ d3.min(times), d3.max(times) ]).range([ 0, w ]).nice();
+    var xAxis = d3.svg.axis().scale(xScale).tickSize(-h).tickSubdivide(true);
 
     var groupScale = d3.scale.category10().domain(Object.keys(groups));
+
+    var visAxis = svg.append("g").classed({
+      "x": true,
+      "axis": true
+    }).attr({
+      "transform": "translate(" + [ 0, h ] + ")"
+    }).call(xAxis);
 
     var sel = svg.selectAll("circle.event").data(events);
     sel.exit().remove();
