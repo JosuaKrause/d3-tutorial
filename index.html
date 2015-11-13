@@ -18,7 +18,7 @@
 function start() {
   var w = 800;
   var h = 600;
-  var radius = 20;
+  var radius = 2;
 
   var content = d3.select("#divContent");
   var svg = content.append("svg").attr({
@@ -35,9 +35,16 @@ function start() {
     }
 
     var events = data["events"];
+    var types = {};
     var groups = {};
     events.forEach(function(e) {
+      types[e["id"]] = true;
       groups[e["group"]] = true;
+    });
+    var typeList = Object.keys(types);
+    var yPos = {};
+    typeList.forEach(function(tid, ix) {
+      yPos[tid] = h - ix * radius;
     });
 
     var times = events.map(function(e) {
@@ -55,12 +62,13 @@ function start() {
       "cx": function(e) {
         return xScale(+e["time"] * 1000);
       },
-      "cy": h * 0.5,
+      "cy": function(e) {
+        return yPos[e["id"]];
+      },
       "r": radius,
       "fill": function(e) {
         return groupScale(e["group"]);
-      },
-      "opacity": 0.1
+      }
     });
   });
 }

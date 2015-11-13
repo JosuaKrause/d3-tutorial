@@ -8,8 +8,8 @@
 	* Create a time scale (X)
 6. Color nodes by event type (X)
 	* Change opacity (X)
-7. Position circles vertically by event type
-	* Create a type scale
+7. Position circles vertically by event type (X)
+	* Create a type scale (X)
   * Order type scale by first occurrence
 8. Create horizontal axis
 9. Add zooming and panning
