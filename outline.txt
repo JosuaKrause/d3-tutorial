@@ -6,8 +6,8 @@
 4. Draw a circle for each patient event (X)
 5. Position circles horizontally by timestamp (X)
 	* Create a time scale (X)
-6. Color nodes by event type
-	* Change opacity
+6. Color nodes by event type (X)
+	* Change opacity (X)
 7. Position circles vertically by event type
 	* Create a type scale
   * Order type scale by first occurrence

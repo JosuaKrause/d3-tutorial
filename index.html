@@ -35,12 +35,18 @@ function start() {
     }
 
     var events = data["events"];
+    var groups = {};
+    events.forEach(function(e) {
+      groups[e["group"]] = true;
+    });
 
     var times = events.map(function(e) {
       return +e["time"] * 1000;
     });
 
     var xScale = d3.time.scale().domain([ d3.min(times), d3.max(times) ]).range([ 0, w ]).nice();
+
+    var groupScale = d3.scale.category10().domain(Object.keys(groups));
 
     var sel = svg.selectAll("circle.event").data(events);
     sel.exit().remove();
@@ -50,7 +56,11 @@ function start() {
         return xScale(+e["time"] * 1000);
       },
       "cy": h * 0.5,
-      "r": radius
+      "r": radius,
+      "fill": function(e) {
+        return groupScale(e["group"]);
+      },
+      "opacity": 0.1
     });
   });
 }
