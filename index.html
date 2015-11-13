@@ -72,7 +72,8 @@ function start() {
     });
 
     var xScale = d3.time.scale().domain([ d3.min(times), d3.max(times) ]).range([ 0, w ]).nice();
-    var xAxis = d3.svg.axis().scale(xScale).tickSize(-h).tickSubdivide(true);
+    var visScale = xScale.copy();
+    var xAxis = d3.svg.axis().scale(visScale).tickSize(-h).tickSubdivide(true);
 
     var groupScale = d3.scale.category10().domain(Object.keys(groups));
 
@@ -83,7 +84,20 @@ function start() {
       "transform": "translate(" + [ 0, h ] + ")"
     }).call(xAxis);
 
-    var sel = svg.selectAll("circle.event").data(events);
+    function zoom() {
+      var move = d3.event.translate;
+      var s = d3.event.scale;
+      base.attr({
+        "transform": "translate(" + move + ") scale(" + s + ")"
+      });
+      visScale.range([ move[0], move[0] + w * s ]);
+      visAxis.call(xAxis);
+    }
+
+    var base = svg.append("g").append("g");
+    svg.call(d3.behavior.zoom().scaleExtent([ 0.5, 8 ]).on("zoom", zoom));
+
+    var sel = base.selectAll("circle.event").data(events);
     sel.exit().remove();
     sel.enter().append("circle").classed("event", true);
     sel.attr({
