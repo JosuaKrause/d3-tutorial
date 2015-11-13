@@ -16,8 +16,16 @@
 
 <script>
 function start() {
+  var w = 800;
+  var h = 600;
+
   var content = d3.select("#divContent");
-  console.log(content);
+  var svg = content.append("svg").attr({
+    "width": w,
+    "height": h
+  }).style({
+    "border": "solid black 1px"
+  });
 
   d3.json("https://raw.githubusercontent.com/JosuaKrause/d3-tutorial/master/example.json", function(err, data) {
     if(err) {

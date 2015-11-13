@@ -2,7 +2,7 @@
 
 1. Importing D3 Library (X)
 2. Load patient JSON file (X)
-3. Set up canvas
+3. Set up canvas (X)
 4. Draw a circle for each patient event
 5. Position circles horizontally by timestamp
 	* Create a time scale
